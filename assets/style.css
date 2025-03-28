@@ -191,6 +191,7 @@ p {
 .app {
     margin-top: 50px; 
     padding: 20px;
+    width: 100vh;
 }
 
 #contenthistory {
