@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <center><p>Calcu-Later</p></center>
-    <hr>
+    <img src="assets/images/logo.png" alt="logo" width="500" style="display: block; margin: auto;">
     <table border="3" align="center" cellpadding="5" cellspacing="3" bgcolor="#b0b0b0" id="calculator">
         <tr>
             <td colspan="4">
@@ -64,15 +63,15 @@
     <div id="choices">
         <table  border="0" align="center" cellpadding="5" cellspacing="3" id="calculator" width="95%">
             <tr>
-                <td align="center"><button id="output-button1" class="buttonAnim out" width="50%">A</button></td>
-                <td align="center"><button id="output-button2" class="buttonAnim out" width="50%">B</button></td>
+                <td align="center"><button id="output-button1" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">A</button></td>
+                <td align="center"><button id="output-button2" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">B</button></td>
             </tr>
             <tr>
-                <td align="center"><button id="output-button3" class="buttonAnim out" width="50%">C</button></td>
-                <td align="center"><button id="output-button4" class="buttonAnim out" width="50%">D</button></td>
+                <td align="center"><button id="output-button3" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">C</button></td>
+                <td align="center"><button id="output-button4" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">D</button></td>
             </tr>
             <tr>
-                <td align="center" colspan="2"><button id="reset-button" class="buttonAnim" onclick="toggleCalculator(); buttonDisappear();">Reset</button></td>
+                <td align="center" colspan="2"><button id="reset-button" class="buttonAnim" onclick="toggleCalculator(); buttonDisappear(); togglePause();">Reset</button></td>
             </tr>
         </table>
     </div>

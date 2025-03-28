@@ -2,6 +2,7 @@ let parenthesis = false;
 let result = 0;
 let toggleCal = false;
 let score = [0,0];
+let checkTimeout;
 
 //for timer
 let timer; 
@@ -85,7 +86,6 @@ function startGame() {
 }
 
 function toggleCalculator() {
-    console.log('I am triggered');
     toggleCal = !toggleCal;
     document.querySelectorAll('#calculator-button').forEach(button => {
         button.disabled = toggleCal;
@@ -93,7 +93,6 @@ function toggleCalculator() {
     if (toggleCal===false) {
         clearInput();
     }
-    togglePause();
     clearTimeout(timeout);
 }
 
@@ -115,7 +114,7 @@ function choicesContent() {
         let randomOffset = Math.floor(Math.random() * 20) - 10;
         if (randomOffset === 0) continue;
 
-        let test = Math.abs(result + randomOffset);
+        let test = result + randomOffset;
         test = Number.isInteger(test) ? test : parseFloat(test.toFixed(2));
 
         choices.add(test);
@@ -129,6 +128,13 @@ function choicesContent() {
 
     buttons.forEach((button, index) => {
         button.textContent = choicesArray[index];
+        button.classList.remove('correct');
+    });
+
+    buttons.forEach(check => {
+        if(check.textContent == result) {
+            check.classList.add('correct');
+        }
     });
 }
 
@@ -139,7 +145,6 @@ function setTimer(duration) {
 
     document.getElementById("timer-text").textContent = timeLeft.toFixed(2) + "s";
     document.getElementById("timer-bar").style.width = "100%";
-    document.getElementById("timer-bar").style.backgroundColor = "rgb(76, 175, 80)";
     isPaused = false;
 }
 
@@ -156,7 +161,7 @@ function startTimer() {
             bar.style.width = width + "%";
             text.textContent = timeLeft.toFixed(2) + "s";
 
-            let red = Math.min(255, 255 - (width * 1.8));
+            let red = Math.min(200, 255 - (width * 1.8));
             let green = Math.max(0, width * 1.8);
             bar.style.backgroundColor = `rgb(${red}, ${green}, 0)`;
 
@@ -165,6 +170,7 @@ function startTimer() {
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 text.textContent = "0.00s";
+                onTimeEnd();
             }
         }
     }, 100);
@@ -176,4 +182,44 @@ function togglePause() {
     } else {
         isPaused = true;
     }
+}
+
+function onTimeEnd() {
+    score[1]++;
+    checkAns();
+
+}
+
+function checkAns() {
+    togglePause();
+    clearInterval(checkTimeout);
+    checkTimeout = setTimeout(() => {
+        buttonDisappear();
+        toggleCalculator();
+    }, 2000);
+    let btn = document.querySelectorAll(".buttonAnim");
+    btn.forEach(button => button.disabled= true);
+    let buttons = [
+        document.getElementById("output-button1"),
+        document.getElementById("output-button2"),
+        document.getElementById("output-button3"),
+        document.getElementById("output-button4")
+    ];
+
+    buttons.forEach(btn => {
+        if(btn.textContent == result) {
+            btn.classList.add('correctAns');
+        } else {
+            btn.classList.add('wrongAns');
+        }
+    });
+}
+
+function addScore(x) {
+    if (x.classList.contains('correct')) {
+        score[0]++;
+    } else {
+        score[1]++;
+    }
+    console.log(score);
 }

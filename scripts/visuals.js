@@ -1,13 +1,15 @@
 let disappearTimeOut;
+
 function buttonAppear() {
     clearTimeout(disappearTimeOut);
     let appear = document.getElementById("choices");
-    appear.style.display = "contents";
+    appear.style.visibility = "visible";
     let buttons = document.querySelectorAll(".buttonAnim");
     buttons.forEach((btn, index) => {
         setTimeout(() => {
             btn.style.opacity = "1";
             btn.style.transform = "scale(1)";
+            btn.disabled = false;
         }, index * 50);
     });
 }
@@ -18,12 +20,18 @@ function buttonDisappear() {
         setTimeout(() => {
             btn.style.opacity = "0";
             btn.style.transform = "scale(0.8)";
+            btn.disabled = true;
         }, index * 50);
     });
 
     disappearTimeOut = setTimeout(() => {
-        document.getElementById("choices").style.display = "none";
+        document.getElementById("choices").style.visibility = "hidden";
     }, buttons.length * 500);
+
+    buttons.forEach(btn => {
+            btn.classList.remove('correctAns');
+            btn.classList.remove('wrongAns');
+    });
 }
 
 

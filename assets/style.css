@@ -1,3 +1,10 @@
+body {
+    background: rgb(34,148,195);
+    background: -moz-linear-gradient(0deg, rgba(34,148,195,1) 0%, rgba(253,184,45,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(34,148,195,1) 0%, rgba(253,184,45,1) 100%);
+    background: linear-gradient(0deg, rgba(34,148,195,1) 0%, rgba(253,184,45,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2294c3",endColorstr="#fdb82d",GradientType=1);
+}
 p {
     font-family: Arial;
     font-weight: 600;
@@ -36,7 +43,7 @@ p {
 }
 
 #choices {
-    display:none;
+    visibility:hidden;
     transition: ease-in-out 0.15s;
 }
 .buttonAnim {
@@ -58,7 +65,7 @@ p {
     transition: ease-in-out 0.25s;
 }
 
-.out:hover {
+.out:hover:enabled {
     background-color: white;
     cursor: pointer;
     scale: 1.02;
@@ -77,13 +84,14 @@ p {
     transition: ease-in-out 0.25s;
 }
 
-#reset-button:hover {
+#reset-button:hover:enabled {
     background-color: white;
     cursor: pointer;
     scale: 1.02;
 }
 
 #timer-container {
+    border: 2px solid rgb(230, 229, 229);
     width: 100%;
     background-color: #ddd;
     height: 5px;
@@ -102,7 +110,7 @@ p {
 }
 
 #timer-text {
-    margin-top: -15px;
+    margin-top: -18px;
     position: absolute;
     text-align: center;
     font-weight: 900;
@@ -110,4 +118,12 @@ p {
     font-family: Arial;
     color: black;
     z-index: 2;
+}
+
+.wrongAns {
+    background-color: lightgray;
+    color: gray;
+}
+.correctAns {
+    background-color: lime;
 }
