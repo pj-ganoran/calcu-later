@@ -189,7 +189,8 @@ p {
 }
 
 .app {
-    margin-top: 50px; 
+    margin-top: 50px;
+    margin-left: -35px;
     padding: 20px;
     width: 100vh;
 }
