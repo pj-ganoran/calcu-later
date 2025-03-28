@@ -34,7 +34,15 @@ function buttonDisappear() {
     });
 }
 
+function toggleMenu() {
+    const menu = document.getElementById("menu");
+    if (menu.style.left === "0px") {
+        menu.style.left = "-250px";
+    } else {
+        menu.style.left = "0px";
+    }
+}
 
-function highlightCorrect() {
-
+function toggleHistory() {
+    document.getElementById("container").classList.toggle("active");
 }

@@ -2,6 +2,7 @@ let parenthesis = false;
 let result = 0;
 let toggleCal = false;
 let score = [0,0];
+let historyList = [];
 let checkTimeout;
 
 //for timer
@@ -12,6 +13,7 @@ let totalTime = 0;
 let isPaused = false;
 let timeout;
 function insertInput(value) {
+    playbeep();
     let screen = document.getElementById("screen");
     let lastInput = screen.value.slice(-1);
 
@@ -37,6 +39,7 @@ function insertInput(value) {
 }
 
 function deleteInput() {
+    playbeep();
     let screen = document.getElementById("screen");
     if(screen.value === "SYNTAX ERROR") {
         screen.value = "";
@@ -56,13 +59,39 @@ function clearInput() {
 function calculate() {
     let solve = document.getElementById("screen").value;
     result = solve;
-    solve = solve.replace('^','**').replace('M','%');
+
+    solve = solve.replace('^', '**').replace('M', '%').replace(/√(\d+(\.\d+)*)/g, 'Math.sqrt($1)');
+
+    solve = solve.replace(/(\d+(\.\d+)?)\s*([\+\-\*\/])\s*(\d+(\.\d+)?)%/g, 
+        (match, num1, _, operator, num2) => `${num1} ${operator} (${num1} * ${num2} / 100)`);
 
     try {
         result = Function(`"use strict"; return (${solve})`)();
         result = Math.round(result * 100) / 100;
     } catch (error) {
         result = "SYNTAX ERROR";
+    }
+
+    history(solve, result);
+}
+
+function history(expression, answer) {
+    if (historyList.length >= 10) { 
+        historyList.shift(); // Keep only the last 10 records
+    }
+    
+    historyList.push(`${expression} = ${answer}`);
+
+    let historyElement = document.getElementById("history");
+    if (historyElement) {
+        historyElement.innerHTML = ""; // Clear previous content
+        
+        historyList.forEach(entry => {
+            let p = document.createElement("p");
+            p.textContent = entry;
+            p.id="contenthistory";
+            historyElement.appendChild(p);
+        });
     }
 }
 
@@ -86,6 +115,7 @@ function startGame() {
 }
 
 function toggleCalculator() {
+    setTimer(10);
     toggleCal = !toggleCal;
     document.querySelectorAll('#calculator-button').forEach(button => {
         button.disabled = toggleCal;
@@ -139,13 +169,22 @@ function choicesContent() {
 }
 
 function setTimer(duration) {
+    console.log('check');
     totalTime = duration;
     timeLeft = totalTime;
     width = 100;
 
-    document.getElementById("timer-text").textContent = timeLeft.toFixed(2) + "s";
-    document.getElementById("timer-bar").style.width = "100%";
-    isPaused = false;
+    let bar = document.getElementById("timer-bar");
+    let text = document.getElementById("timer-text");
+
+    bar.style.width = width + "%";
+    text.textContent = timeLeft.toFixed(2) + "s";
+
+    let red = Math.min(200, 255 - (width * 1.8));
+    let green = Math.max(0, width * 1.8);
+    bar.style.backgroundColor = `rgb(${red}, ${green}, 0)`;
+
+    isPaused = true;
 }
 
 function startTimer() {
@@ -191,12 +230,13 @@ function onTimeEnd() {
 }
 
 function checkAns() {
-    togglePause();
     clearInterval(checkTimeout);
     checkTimeout = setTimeout(() => {
         buttonDisappear();
         toggleCalculator();
     }, 2000);
+    
+    togglePause();
     let btn = document.querySelectorAll(".buttonAnim");
     btn.forEach(button => button.disabled= true);
     let buttons = [
@@ -217,9 +257,25 @@ function checkAns() {
 
 function addScore(x) {
     if (x.classList.contains('correct')) {
+        playding();
         score[0]++;
     } else {
+        playwomp();
         score[1]++;
     }
     console.log(score);
+}
+
+function playbeep() {
+    const audio = new Audio('assets/audios/press.mp3');
+    audio.play();
+}
+function playding() {
+    const audio = new Audio('assets/audios/correct.mp3');
+    audio.play();
+}
+
+function playwomp() {
+    const audio = new Audio('assets/audios/wrong.mp3');
+    audio.play();
 }

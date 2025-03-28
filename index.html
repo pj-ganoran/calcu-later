@@ -3,77 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcu-Later.net</title>
+    <title>Calcu-Later.app</title>
+    <link rel="icon" type="image/png" href="assets/images/calculaterlogo.png">
     <script src="scripts/visuals.js"></script>
     <script src="scripts/logic.js"></script>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <img src="assets/images/logo.png" alt="logo" width="500" style="display: block; margin: auto;">
-    <table border="3" align="center" cellpadding="5" cellspacing="3" bgcolor="#b0b0b0" id="calculator">
-        <tr>
-            <td colspan="4">
-                <div>
-                    <input type="text" readonly id="screen">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td align="center"><button id="calculator-button" onclick="insertInput('%');">%</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('^');">^</button></td>
-            <td align="center"><button id="calculator-button" onclick="clearInput();">C</button></td>
-            <td align="center"><button id="calculator-button" onclick="deleteInput();">❌</button></td>
-        </tr>
-        <tr>
-            <td align="center"><button id="calculator-button" onclick="insertInput('P');">( )</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('√');">√</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('M');">M</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('/');">/</button></td>
-        </tr>
-        <tr>
-            <td align="center"><button id="calculator-button" onclick="insertInput('7');">7</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('8');">8</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('9');">9</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('*');">*</button></td>
-        </tr>
-        <tr>
-            <td align="center"><button id="calculator-button" onclick="insertInput('4');">4</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('5');">5</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('6');">6</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('-');">-</button></td>
-        </tr>
-        <tr>
-            <td align="center"><button id="calculator-button" onclick="insertInput('1');">1</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('2');">2</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('3');">3</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('+');">+</button></td>
-        </tr>
-        <tr>
-            <td align="center"><button id="calculator-button" onclick="shift();">↑</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('0');">0</button></td>
-            <td align="center"><button id="calculator-button" onclick="insertInput('.');">.</button></td>
-            <td align="center"><button id="calculator-button" onclick="startGame();">=</button></td>
-        </tr>
-    </table>
-    <br>
-    <div id="timer-text">10.00s</div>
-    <div id="timer-container">
-        <div id="timer-bar"></div>
+    <div class="top-bar">
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
     </div>
-    <div id="choices">
-        <table  border="0" align="center" cellpadding="5" cellspacing="3" id="calculator" width="95%">
+
+    <div id="menu" class="menu">
+        <a href="index.html">Home</a>
+        <a href="javascript:void(0)" onclick="toggleHistory();">History</a>
+        <a href="about.html">About</a>
+    </div>
+
+    <div id="container" class="overlay">
+        <div id="history" class="container">
+        </div>
+        <div>
+            <button class="close-btn" onclick="toggleHistory()">❌</button>
+        </div>
+
+    </div>
+    
+    <div id="app" class="app">
+        <img src="assets/images/logo.png" alt="logo" width="500" id="logo">
+        <table border="3" cellpadding="5" cellspacing="3" bgcolor="#b0b0b0" id="calculator">
             <tr>
-                <td align="center"><button id="output-button1" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">A</button></td>
-                <td align="center"><button id="output-button2" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">B</button></td>
+                <td colspan="4">
+                    <div>
+                        <input type="text" readonly id="screen">
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td align="center"><button id="output-button3" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">C</button></td>
-                <td align="center"><button id="output-button4" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">D</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('%');">%</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('^');">^</button></td>
+                <td align="center"><button id="calculator-button" onclick="clearInput();">C</button></td>
+                <td align="center"><button id="calculator-button" onclick="deleteInput();">❌</button></td>
             </tr>
             <tr>
-                <td align="center" colspan="2"><button id="reset-button" class="buttonAnim" onclick="toggleCalculator(); buttonDisappear(); togglePause();">Reset</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('P');">( )</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('√');">√</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('M');">M</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('/');">/</button></td>
+            </tr>
+            <tr>
+                <td align="center"><button id="calculator-button" onclick="insertInput('7');">7</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('8');">8</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('9');">9</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('*');">*</button></td>
+            </tr>
+            <tr>
+                <td align="center"><button id="calculator-button" onclick="insertInput('4');">4</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('5');">5</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('6');">6</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('-');">-</button></td>
+            </tr>
+            <tr>
+                <td align="center"><button id="calculator-button" onclick="insertInput('1');">1</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('2');">2</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('3');">3</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('+');">+</button></td>
+            </tr>
+            <tr>
+                <td align="center"><button id="calculator-button" onclick="shift();">↑</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('0');">0</button></td>
+                <td align="center"><button id="calculator-button" onclick="insertInput('.');">.</button></td>
+                <td align="center"><button id="calculator-button" onclick="startGame();">=</button></td>
             </tr>
         </table>
+        <br>
+        <div id="timer-text">10.00s</div>
+        <div id="timer-container">
+            <div id="timer-bar"></div>
+        </div>
+        <div id="choices">
+            <table  border="0" align="center" cellpadding="5" cellspacing="3" id="calculator" width="100%">
+                <tr>
+                    <td align="center" width="50%"><button id="output-button1" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">A</button></td>
+                    <td align="center" width="50%"><button id="output-button2" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">B</button></td>
+                </tr>
+                <tr>
+                    <td align="center" width="50%"><button id="output-button3" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">C</button></td>
+                    <td align="center" width="50%"><button id="output-button4" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">D</button></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="2"><button id="reset-button" class="buttonAnim" onclick="toggleCalculator(); buttonDisappear();">Reset</button></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>
