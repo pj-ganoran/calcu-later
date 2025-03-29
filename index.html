@@ -11,29 +11,65 @@
 </head>
 <body>
     <div class="top-bar">
+        <img src="assets/images/CCMADI.png" alt="ccmadilogo" width="50px">
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
     </div>
 
     <div id="menu" class="menu">
         <a href="javascript:void(0)" onclick="toggleScoreboard();">Scoreboard</a>
         <a href="javascript:void(0)" onclick="toggleHistory();">History</a>
-        <a href="about.html">About</a>
+        <a href="javascript:void(0)" onclick="toggleAbout();">About</a>
     </div>
 
     <div id="scoreboard" class="scoreboard">
         <p id="scoreCorrect"></p>
         <p id="scoreWrong"></p>
     </div>
-
-    <div id="container" class="overlay">
-        <div id="history" class="container">
+    
+    <div id="history">
+        <button class="historyClose" onclick="toggleHistory()">❌</button>
+        <div class="historyContent">
+            <p class="historyText">History is Empty</p>
         </div>
-        <div>
-            <button class="close-btn" onclick="toggleHistory()">❌</button>
+    </div>
+
+    <div id="about">
+        <button class="aboutClose" onclick="toggleAbout()">❌</button>
+        <div class="aboutContent">
+            <p class="aboutText">Developer's Profile:</p>
+            <img src="assets/images/PJ.jpg" alt="" width="50" height="50" border="2" class="aboutImg">
+            <p class="aboutText">
+                Name: Phel John Ganoran<br>
+                Age: 21<br>
+                Status: Single<br>
+            </p>
+            <p class="aboutText"><i>
+                Developer Note:<br><br>
+                I'm currently taking Bachelor of Science Information Technology at Romblon State University - College of Computing Multimedia Arts and Digital Innovation. Current Public Relations Officer of the Supreme Student Council in the Main Campus. This project is for our final term at our 2nd Year - Second Semester.
+            </i></p>
+        </div>
+        <div class="aboutContent">
+            <img src="assets/images/Paul.jpg" alt="" width="50" height="50" border="2" class="aboutImg">
+            <p class="aboutText">
+                Name: Paul Anthony G. Fontamillas<br>
+                Age: 23<br>
+                Status: Single<br>
+            </p>
+            <p class="aboutText"><i>
+                Developer Note:<br><br>
+                I am a Bachelor of Science in Information Technology student at Romblon State University - College of Computing, Multimedia Arts, and Digital Innovation. A chill and down-to-earth person, I prefer casual, natural conversations. I have a strong interest in algorithms, problem-solving, and web design. Living in Barangay Dapawan, I like to keep things straightforward and fun.
+            </i></p>
+        </div>
+        <div class="aboutContent">
+            <p class="aboutText">
+                About this WebApp:<br><br>
+                This calculator gives you multiple answers, it is your job to figure out which is the correct answer, giving you the correct answer later.<br><br>
+                <i>Dev Note: Useless I know...</i><br><br>
+                This calculator can also help to increase your mental math prowess. When you insert your own mathematical problem, it enables you to do it yourself. 
+            </p>
         </div>
 
     </div>
-
     <div id="application" class="app">
         <img src="assets/images/logo.png" alt="logo" width="500" id="logo">
         <table border="3" cellpadding="5" cellspacing="3" bgcolor="#b0b0b0" id="calculator">

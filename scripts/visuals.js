@@ -1,5 +1,6 @@
 let disappearTimeOut;
-
+let aboutActive = false;
+let historyActive = false;
 function buttonAppear() {
     clearTimeout(disappearTimeOut);
     let appear = document.getElementById("choices");
@@ -43,10 +44,6 @@ function toggleMenu() {
     }
 }
 
-function toggleHistory() {
-    document.getElementById("container").classList.toggle("active");
-}
-
 window.onload = function() {
     updateScoreboard();
     if(/Mobi|Android/i.test(navigator.userAgent)) {
@@ -67,5 +64,49 @@ function toggleScoreboard() {
         menu.style.right = "-400px";
     } else {
         menu.style.right = "0px";
+    }
+}
+
+function toggleAbout() {
+    aboutActive=!aboutActive;
+    clearTimeout(disappearTimeOut);
+    document.getElementById("about").classList.toggle("active");
+    let content = document.querySelectorAll(".aboutContent");
+    if(aboutActive  === true) {
+        content.forEach( (box, index) =>{
+            setTimeout(() => {
+                box.style.opacity = "1";
+                box.style.transform = "scale(1)";
+            }, index * 50);
+        });
+    } else {
+        content.forEach((box, index) => {
+            setTimeout(() => {
+                box.style.opacity = "0";
+                box.style.transform = "scale(0.8)";
+            }, index * 50);
+        });
+    }
+}
+
+function toggleHistory() {
+    historyActive=!historyActive;
+    clearTimeout(disappearTimeOut);
+    document.getElementById("history").classList.toggle("active");
+    let content = document.querySelectorAll(".historyContent");
+    if(historyActive  === true) {
+        content.forEach( (box, index) =>{
+            setTimeout(() => {
+                box.style.opacity = "1";
+                box.style.transform = "scale(1)";
+            }, index * 50);
+        });
+    } else {
+        content.forEach((box, index) => {
+            setTimeout(() => {
+                box.style.opacity = "0";
+                box.style.transform = "scale(0.8)";
+            }, index * 50);
+        });
     }
 }

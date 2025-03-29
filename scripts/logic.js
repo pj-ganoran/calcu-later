@@ -75,21 +75,30 @@ function calculate() {
 }
 
 function history(expression, answer) {
-    if (historyList.length >= 10) { 
-        historyList.shift(); // Keep only the last 10 records
+    if (historyList.length >= 5) { 
+        historyList.shift(); 
     }
     
     historyList.push(`${expression} = ${answer}`);
 
     let historyElement = document.getElementById("history");
     if (historyElement) {
-        historyElement.innerHTML = ""; // Clear previous content
-        
+        historyElement.innerHTML = ""; 
+        let close = document.createElement("button");
+        close.textContent='❌';
+        close.className='historyClose';
+        close.onclick=function() {
+            toggleHistory();
+        };
+        historyElement.appendChild(close);
         historyList.forEach(entry => {
+            let div = document.createElement("div");
             let p = document.createElement("p");
             p.textContent = entry;
-            p.id="contenthistory";
-            historyElement.appendChild(p);
+            p.className="historyText";            
+            div.className="historyContent";
+            div.appendChild(p);
+            historyElement.appendChild(div);
         });
     }
 }
