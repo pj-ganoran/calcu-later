@@ -104,8 +104,8 @@ function startGame() {
         buttonAppear();
         setTimer(10);
         screen.value = "CHOOSE YOUR ANSWER";
+        toggleCalculator();
         timeout = setTimeout(() => {
-            toggleCalculator();
             startTimer();
         }, 500);
         
