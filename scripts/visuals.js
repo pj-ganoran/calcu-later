@@ -46,3 +46,26 @@ function toggleMenu() {
 function toggleHistory() {
     document.getElementById("container").classList.toggle("active");
 }
+
+window.onload = function() {
+    updateScoreboard();
+    if(/Mobi|Android/i.test(navigator.userAgent)) {
+        addMobileClass();
+    }
+};
+
+function addMobileClass() {
+    var checkDiv = document.getElementById('application');
+    if (checkDiv) {
+        checkDiv.classList.add('isMobile');
+    }
+}
+
+function toggleScoreboard() {
+    const menu = document.getElementById("scoreboard");
+    if (menu.style.right === "0px") {
+        menu.style.right = "-400px";
+    } else {
+        menu.style.right = "0px";
+    }
+}

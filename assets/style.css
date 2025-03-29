@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Calculator";
+    src: url('fonts/digital-7.ttf');
+}
 body {
     background: rgb(34,148,195);
     background: linear-gradient(0deg, rgba(34,148,195,1) 0%, rgba(253,184,45,1) 100%);
@@ -20,23 +24,24 @@ p {
 }
 #screen {
     padding: 10px;
-    font-family:'Consolas';
+    font-family:'Calculator';
     color: lawngreen;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 36px;
     width: 300px;
+    height: 40px;
     border-radius: 3px;
     background-color: rgb(29, 44, 44);
 }
 
 #calculator-button {
     font-family: Arial;
-    font-weight: 600;
+    font-weight: 900;
     width: 70px;
     height: 40px;
     border-radius: 10px;
     border-width: 1px;
-    font-size: 14px;
+    font-size: 22px;
     background-color: beige;
     transition: ease-in-out 0.15s;
 }
@@ -58,14 +63,14 @@ p {
 }
 
 .out{
-    font-family: Arial;
+    font-family: 'Calculator';
     font-weight: 600;
     border-style:dashed;
     width: 100%;
     height: 100px;
     border-radius: 10px;
     border-width: 1px;
-    font-size: 14px;
+    font-size: 36px;
     background-color: beige;
     transition: ease-in-out 0.25s;
 }
@@ -77,14 +82,14 @@ p {
 }
 
 #reset-button{
-    font-family: Arial;
+    font-family: 'Calculator';
     font-weight: 600;
     border-style:dashed;
     width: 100%;
     height: 100px;
     border-radius: 10px;
     border-width: 1px;
-    font-size: 14px;
+    font-size: 36px;
     background-color: beige;
     transition: ease-in-out 0.25s;
 }
@@ -159,7 +164,10 @@ p {
 }
 
 .menu {
+    font-family: 'Segoe UI';
+    font-weight: 600;
     margin-top: 50px;
+    text-shadow: 2px 2px #333;
     position: fixed;
     top: 30px;
     left: -250px;
@@ -198,11 +206,14 @@ p {
 }
 
 #contenthistory {
-    font-family: Arial;
+    font-size: 28px;
+    font-family: 'Calculator';
+    color: lime;
     font-weight: 600;
-    background-color: #ddd;
+    background-color: #222222;
     border-radius: 4px;
     padding: 5px;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .overlay {
@@ -222,24 +233,21 @@ p {
     gap:10px;
 }
 
-/* Centered container */
 .container {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.5);
     text-align: left;
     width: 500px;
     z-index:100;    
 }
 
-/* Show the modal */
 .overlay.active {
     visibility: visible;
     opacity: 1;
 }
 
-/* Close button */
 .close-btn {
     background: white;
     text-align: center;
@@ -250,6 +258,44 @@ p {
     cursor: pointer;
     margin-top: 10px;
     border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     z-index:1000;
-
 }
+
+#scoreboard{
+    position: fixed;
+    top: 90px;
+    right: -400px;
+    background: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    width: 300px;
+    z-index:18;
+    transition: right 0.3s ease-in-out;
+    border: 3px solid #444;
+}
+#scoreWrong{
+    font-size: 28px;
+    font-family: 'Calculator';
+    font-weight: 600;
+    color: red;
+    background-color: #222222;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#scoreCorrect{
+    font-size: 28px;
+    font-family: 'Calculator';
+    font-weight: 600;
+    color: lime;
+    background-color: #222222;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+

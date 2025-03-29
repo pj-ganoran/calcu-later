@@ -4,7 +4,6 @@ let toggleCal = false;
 let score = [0,0];
 let historyList = [];
 let checkTimeout;
-
 //for timer
 let timer; 
 let width = 100; 
@@ -98,7 +97,6 @@ function history(expression, answer) {
 function startGame() {
     let screen = document.getElementById("screen");
     calculate(screen.value);
-    console.log(result);
     if (result === "SYNTAX ERROR") {
         screen.value = "SYNTAX ERROR";
     } else {
@@ -208,6 +206,7 @@ function startTimer() {
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 text.textContent = "0.00s";
+                playwomp();
                 onTimeEnd();
             }
         }
@@ -224,8 +223,8 @@ function togglePause() {
 
 function onTimeEnd() {
     score[1]++;
+    updateScoreboard();
     checkAns();
-
 }
 
 function checkAns() {
@@ -262,7 +261,7 @@ function addScore(x) {
         playwomp();
         score[1]++;
     }
-    console.log(score);
+    updateScoreboard();
 }
 
 function playbeep() {
@@ -275,19 +274,19 @@ function playding() {
 }
 
 function playwomp() {
+    console.log('womp womp')
     const audio = new Audio('assets/audios/wrong.mp3');
     audio.play();
 }
 
-window.onload = function() {
-    if(/Mobi|Android/i.test(navigator.userAgent)) {
-        addMobileClass();
-    }
-};
+function updateScoreboard() {
+    let correctsDiv = document.getElementById('scoreCorrect');
+    let wrongsDiv = document.getElementById('scoreWrong');
 
-function addMobileClass() {
-    var checkDiv = document.getElementById('check');
-    if (checkDiv) {
-        checkDiv.classList.add('isMobile');
+    if (correctsDiv) {
+        correctsDiv.textContent = 'PASS: ' + score[0]; // Update correct answers display
+    }
+    if (wrongsDiv) {
+        wrongsDiv.textContent = 'FAIL: ' + score[1]; // Update wrong answers display
     }
 }
