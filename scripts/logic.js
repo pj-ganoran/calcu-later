@@ -169,7 +169,6 @@ function choicesContent() {
 }
 
 function setTimer(duration) {
-    console.log('check');
     totalTime = duration;
     timeLeft = totalTime;
     width = 100;
@@ -278,4 +277,17 @@ function playding() {
 function playwomp() {
     const audio = new Audio('assets/audios/wrong.mp3');
     audio.play();
+}
+
+window.onload = function() {
+    if(/Mobi|Android/i.test(navigator.userAgent)) {
+        addMobileClass();
+    }
+};
+
+function addMobileClass() {
+    var checkDiv = document.getElementById('check');
+    if (checkDiv) {
+        checkDiv.classList.add('isMobile');
+    }
 }

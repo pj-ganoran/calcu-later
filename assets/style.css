@@ -9,10 +9,6 @@ p {
     padding :0px;
 }
 
-#app {
-    transform: scale(0.95);
-}
-
 #calculator {
     border-color: black;
     margin: 0 auto;
@@ -192,7 +188,13 @@ p {
     margin-top: 50px;
     margin-left: -35px;
     padding: 20px;
+    width: 100%;
+    transform: scale(0.95);
+}
+
+.isMobile {
     width: 100vh;
+    height: 100%;
 }
 
 #contenthistory {
