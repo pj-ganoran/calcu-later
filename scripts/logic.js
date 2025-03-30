@@ -1,25 +1,27 @@
+//For Calculator
 let parenthesis = false;
 let result = 0;
 let toggleCal = false;
 let score = [0,0];
 let historyList = [];
+
+//for timer Variables
 let checkTimeout;
-//for timer
 let timer; 
 let width = 100; 
 let timeLeft = 0; 
 let totalTime = 0;
 let isPaused = false;
 let timeout;
+
+//For Input and Calculation
 function insertInput(value) {
     playbeep();
     let screen = document.getElementById("screen");
     let lastInput = screen.value.slice(-1);
-
     if("+-*/.%".includes(value) && "+-*/.%".includes(lastInput)) {
         return;
     }
-
     if (parenthesis === false && value === 'P') {
         value = "(";
         parenthesis = !parenthesis;
@@ -27,13 +29,11 @@ function insertInput(value) {
         value = ")";
         parenthesis = !parenthesis;
     }
-
     if(screen.value === "SYNTAX ERROR") {
         screen.value = "";
         screen.value += value;
         return;
     }
-
     screen.value += value;
 }
 
@@ -50,9 +50,14 @@ function deleteInput() {
     }
     screen.value = screen.value.substring(0, (screen.value.length-1));
 }
+
 function clearInput() {
     let screen = document.getElementById("screen");
     screen.value = "";
+}
+
+function shift() {
+    parenthesis = !parenthesis; //For handling parenthesis inputs
 }
 
 function calculate() {
@@ -74,6 +79,25 @@ function calculate() {
     history(solve, result);
 }
 
+//For Initializing the gamepart of the calculator
+function startGame() {
+    let screen = document.getElementById("screen");
+    calculate(screen.value);
+    if (result === "SYNTAX ERROR") {
+        screen.value = "SYNTAX ERROR";
+    } else {
+        choicesContent();
+        buttonAppear();
+        setTimer(10);
+        screen.value = "CHOOSE YOUR ANSWER";
+        toggleCalculator();
+        timeout = setTimeout(() => {
+            startTimer();
+        }, 500);
+    }
+}
+
+//Handles the history tab
 function history(expression, answer) {
     if (historyList.length >= 5) { 
         historyList.shift(); 
@@ -103,24 +127,7 @@ function history(expression, answer) {
     }
 }
 
-function startGame() {
-    let screen = document.getElementById("screen");
-    calculate(screen.value);
-    if (result === "SYNTAX ERROR") {
-        screen.value = "SYNTAX ERROR";
-    } else {
-        choicesContent();
-        buttonAppear();
-        setTimer(10);
-        screen.value = "CHOOSE YOUR ANSWER";
-        toggleCalculator();
-        timeout = setTimeout(() => {
-            startTimer();
-        }, 500);
-        
-    }
-}
-
+//Freezes the calculator so no new input can be registered
 function toggleCalculator() {
     setTimer(10);
     toggleCal = !toggleCal;
@@ -133,10 +140,7 @@ function toggleCalculator() {
     clearTimeout(timeout);
 }
 
-function shift() {
-    parenthesis = !parenthesis;
-}
-
+//For choices inside the buttons
 function choicesContent() {
     let buttons = [
         document.getElementById("output-button1"),
@@ -175,6 +179,7 @@ function choicesContent() {
     });
 }
 
+//For the timer
 function setTimer(duration) {
     totalTime = duration;
     timeLeft = totalTime;
@@ -230,6 +235,7 @@ function togglePause() {
     }
 }
 
+//For checking the answer
 function onTimeEnd() {
     score[1]++;
     updateScoreboard();
@@ -262,8 +268,8 @@ function checkAns() {
     });
 }
 
-function addScore(x) {
-    if (x.classList.contains('correct')) {
+function addScore(correctButton) {
+    if (correctButton.classList.contains('correct')) {
         playding();
         score[0]++;
     } else {
@@ -273,6 +279,19 @@ function addScore(x) {
     updateScoreboard();
 }
 
+function updateScoreboard() {
+    let correctsDiv = document.getElementById('scoreCorrect');
+    let wrongsDiv = document.getElementById('scoreWrong');
+
+    if (correctsDiv) {
+        correctsDiv.textContent = 'PASS: ' + score[0];
+    }
+    if (wrongsDiv) {
+        wrongsDiv.textContent = 'FAIL: ' + score[1];
+    }
+}
+
+//Audios used inside the webapp
 function playbeep() {
     const audio = new Audio('assets/audios/press.mp3');
     audio.play();
@@ -283,19 +302,6 @@ function playding() {
 }
 
 function playwomp() {
-    console.log('womp womp')
     const audio = new Audio('assets/audios/wrong.mp3');
     audio.play();
-}
-
-function updateScoreboard() {
-    let correctsDiv = document.getElementById('scoreCorrect');
-    let wrongsDiv = document.getElementById('scoreWrong');
-
-    if (correctsDiv) {
-        correctsDiv.textContent = 'PASS: ' + score[0]; // Update correct answers display
-    }
-    if (wrongsDiv) {
-        wrongsDiv.textContent = 'FAIL: ' + score[1]; // Update wrong answers display
-    }
 }

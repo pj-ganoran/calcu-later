@@ -2,26 +2,23 @@
     font-family: "Calculator";
     src: url('fonts/Technology.ttf');
 }
+/* For Whole Background*/
 body {
     background: rgb(34,148,195);
     background: linear-gradient(0deg, rgba(34,148,195,1) 0%, rgba(253,184,45,1) 100%);
     background-attachment: fixed;
 }
-p {
-    font-family: Arial;
-    font-weight: 600;
-    padding :0px;
+/* For centering logo */
+#logo {
+    display: block; 
+    margin: auto; 
 }
-
+/* For Calculator Table */
 #calculator {
     border-color: black;
     margin: 0 auto;
 }
 
-#logo {
-    display: block; 
-    margin: auto; 
-}
 #screen {
     padding: 10px;
     font-family:'Calculator';
@@ -52,6 +49,7 @@ p {
     scale: 1.1;
 }
 
+/* For Buttons and Button Animations */
 #choices {
     visibility:hidden;
     transition: ease-in-out 0.15s;
@@ -100,6 +98,16 @@ p {
     scale: 1.02;
 }
 
+.wrongAns {
+    background-color: lightgray;
+    color: gray;
+}
+
+.correctAns {
+    background-color: lime;
+}
+
+/* For Timer */
 #timer-container {
     border: 2px solid rgb(230, 229, 229);
     width: 100%;
@@ -131,14 +139,7 @@ p {
     text-shadow: 1px 1px rgb(117, 117, 117);
 }
 
-.wrongAns {
-    background-color: lightgray;
-    color: gray;
-}
-.correctAns {
-    background-color: lime;
-}
-
+/* For Header Bar */
 .top-bar {
     background-color: #333;
     color: white;
@@ -304,6 +305,7 @@ p {
     font-family: arial;
     font-size: 14px;
     text-align: justify;
+    font-weight: 600;
 }
 
 .aboutImg {

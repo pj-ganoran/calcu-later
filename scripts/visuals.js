@@ -1,6 +1,24 @@
-let disappearTimeOut;
+let disappearTimeOut; //Used for clearing timeout functions
+//Visual Toggles
 let aboutActive = false;
 let historyActive = false;
+let buttonsActive = false;
+//For Checking on Mobile
+window.onload = function() {
+    updateScoreboard();
+    if(/Mobi|Android/i.test(navigator.userAgent)) {
+        addMobileClass();
+    }
+};
+
+function addMobileClass() {
+    var checkDiv = document.getElementById('application');
+    if (checkDiv) {
+        checkDiv.classList.add('isMobile');
+    }
+}
+
+//Button Animation
 function buttonAppear() {
     clearTimeout(disappearTimeOut);
     let appear = document.getElementById("choices");
@@ -41,20 +59,6 @@ function toggleMenu() {
         menu.style.left = "-250px";
     } else {
         menu.style.left = "0px";
-    }
-}
-
-window.onload = function() {
-    updateScoreboard();
-    if(/Mobi|Android/i.test(navigator.userAgent)) {
-        addMobileClass();
-    }
-};
-
-function addMobileClass() {
-    var checkDiv = document.getElementById('application');
-    if (checkDiv) {
-        checkDiv.classList.add('isMobile');
     }
 }
 
