@@ -13,13 +13,13 @@ window.onload = function() {
 
 function addMobileClass() {
     let scale = document.getElementById('application');
-    let login = document.getElementById('about');
+    let about = document.getElementById('about');
     if (scale) {
         scale.classList.add('isMobile');
     }
 
-    if (login) {
-        login.classList.add('isMobile');
+    if (about) {
+        about.classList.add('isMobile');
     }
 }
 
