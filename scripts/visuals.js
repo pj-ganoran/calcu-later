@@ -12,9 +12,14 @@ window.onload = function() {
 };
 
 function addMobileClass() {
-    var checkDiv = document.getElementById('application');
-    if (checkDiv) {
-        checkDiv.classList.add('isMobile');
+    let scale = document.getElementById('application');
+    let login = document.getElementById('about');
+    if (scale) {
+        scale.classList.add('isMobile');
+    }
+
+    if (login) {
+        login.classList.add('isMobile');
     }
 }
 

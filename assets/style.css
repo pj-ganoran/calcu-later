@@ -8,6 +8,21 @@ body {
     background: linear-gradient(0deg, rgba(34,148,195,1) 0%, rgba(253,184,45,1) 100%);
     background-attachment: fixed;
 }
+
+/* For Scaling per device */
+.app {
+    margin-top: 50px;
+    margin-left: -35px;
+    padding: 20px;
+    width: 100%;
+    transform: scale(0.95);
+}
+
+.isMobile {
+    width: 100vh;
+    height: 100%;
+}
+
 /* For centering logo */
 #logo {
     display: block; 
@@ -194,21 +209,6 @@ body {
     background: #666;
 }
 
-.app {
-    margin-top: 50px;
-    margin-left: -35px;
-    padding: 20px;
-    width: 100%;
-    transform: scale(0.95);
-}
-
-.isMobile {
-    width: 100vh;
-    height: 100%;
-}
-
-
-
 #scoreboard{
     position: fixed;
     top: 90px;
@@ -270,22 +270,19 @@ div#aboutContainer {
 @media (max-width: 768px) {
     div#aboutContainer {
         transform: scale(0.8);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+    }
+
+    .loginCard {
+        transform: scale(0.8);
     }
 }
 
 @media (max-width: 480px) {
     div#aboutContainer {
         transform: scale(0.6);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+    }
+    .loginCard {
+        transform: scale(0.6);
     }
 }
 
@@ -402,6 +399,7 @@ div#aboutContainer {
     text-align: justify;
     letter-spacing: 3px;
 }
+/*Login Register CSS*/
 
 .loginContainer {
     position: absolute;
@@ -422,6 +420,10 @@ div#aboutContainer {
     place-items: center;
     transform-style: preserve-3d;
     transition: transform 0.5s;
+}
+
+.loginCard {
+    scale: 1.0;
 }
 .loginContainer.flipped .loginCard {
     transform: rotateY(180deg);
@@ -446,7 +448,7 @@ div#aboutContainer {
   }
 
 .loginbox {
-transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 div.registerbox input, div.loginbox input {
@@ -483,9 +485,4 @@ div.loginContainer button {
     padding-inline: 30%;
     padding-block: 5px;
     margin-bottom: 20px;
-}
-form {
-    all: unset;
-    display: flex;
-    flex-direction: column;
 }
