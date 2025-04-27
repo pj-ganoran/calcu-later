@@ -2,6 +2,10 @@
     font-family: "Calculator";
     src: url('fonts/Technology.ttf');
 }
+
+#application {
+    scale: 1
+}
 /* For Whole Background*/
 body {
     background: rgb(34,148,195);
