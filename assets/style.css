@@ -270,6 +270,11 @@ div#aboutContainer {
 @media (max-width: 768px) {
     div#aboutContainer {
         transform: scale(0.8);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 
     .loginCard {
@@ -280,6 +285,11 @@ div#aboutContainer {
 @media (max-width: 480px) {
     div#aboutContainer {
         transform: scale(0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
     .loginCard {
         transform: scale(0.6);
