@@ -252,15 +252,41 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+div#aboutContainer {
+    transform: scale(1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    z-index: 99;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+@media (max-width: 768px) {
+    div#aboutContainer {
+        transform: scale(0.8);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    div#aboutContainer {
+        transform: scale(0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
 }
 
 #about.active {
@@ -375,4 +401,91 @@ body {
     color:lime;
     text-align: justify;
     letter-spacing: 3px;
+}
+
+.loginContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    margin-top: 92px;
+    perspective: 1000px;
+}
+
+.loginCard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+.loginContainer.flipped .loginCard {
+    transform: rotateY(180deg);
+}
+
+.registerbox, .loginbox {
+    position: absolute;
+    max-width: 400px;
+    max-height: 300px;
+    width: 400px;
+    height: 300px;
+    backface-visibility: hidden;
+    display: flex;
+    background-color: rgb(8, 8, 8);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Segoe UI';
+    font-weight: bolder;
+    flex-direction: column;
+    justify-content: center;
+    color: #eef;
+  }
+
+.loginbox {
+transform: rotateY(180deg);
+}
+
+div.registerbox input, div.loginbox input {
+    border-radius: 50px;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: rgb(8,8,8);
+    font-family: Arial;
+    font-weight: 600;
+    outline-style: solid;
+    outline-color: aqua;
+    color: #eef;
+}
+
+div.registerbox input::placeholder, div.loginbox input::placeholder {
+    font-family: sans-serif;
+    font-weight: 100;
+    color: #dde;
+}
+
+div.loginContainer button {
+    border:none;
+    background-color: rgba(0,0,0,0);
+    font-size: 14px;
+    font-weight: bold;
+    color: #eef;
+    cursor: pointer;
+    outline-style: solid;
+    outline-color: aqua;
+    text-align: center;
+    border-radius: 50px;
+    padding-inline: 30%;
+    padding-block: 5px;
+    margin-bottom: 20px;
+}
+form {
+    all: unset;
+    display: flex;
+    flex-direction: column;
 }

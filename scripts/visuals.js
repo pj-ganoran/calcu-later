@@ -114,3 +114,8 @@ function toggleHistory() {
         });
     }
 }
+
+//Register Login
+function flip(container) {
+    container.classList.toggle('flipped');
+}

@@ -9,9 +9,9 @@
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
     <link rel="icon" type="image/png" href="assets/images/calculaterlogo.png">
-    <script src="scripts/visuals.js"></script>
-    <script src="scripts/logic.js"></script>
     <link rel="stylesheet" href="assets/style.css">
+    <script defer src="scripts/visuals.js"></script>
+    <script defer src="scripts/logic.js"></script>
 </head>
 <body>
     <div class="top-bar">
@@ -20,127 +20,66 @@
     </div>
 
     <div id="menu" class="menu">
-        <a href="javascript:void(0)" onclick="toggleScoreboard();">Scoreboard</a>
-        <a href="javascript:void(0)" onclick="toggleHistory();">History</a>
         <a href="javascript:void(0)" onclick="toggleAbout();">About</a>
     </div>
 
-    <div id="scoreboard" class="scoreboard">
-        <p id="scoreCorrect"></p>
-        <p id="scoreWrong"></p>
-    </div>
-    
-    <div id="history">
-        <button class="historyClose" onclick="toggleHistory()">❌</button>
-        <div class="historyContent">
-            <p class="historyText">History is Empty</p>
-        </div>
-    </div>
-
     <div id="about">
-        <button class="aboutClose" onclick="toggleAbout()">❌</button>
-        <div class="aboutContent">
-            <p class="aboutText">Developer's Profile:</p>
-            <img src="assets/images/PJ.jpg" alt="" width="50" height="50" border="2" class="aboutImg">
-            <p class="aboutText">
-                Name: Phel John Ganoran<br>
-                Age: 21<br>
-                Status: Single<br>
-            </p>
-            <p class="aboutText"><i>
-                Developer Note:<br><br>
-                I'm currently taking Bachelor of Science Information Technology at Romblon State University - College of Computing Multimedia Arts and Digital Innovation. Current Public Relations Officer of the Supreme Student Council in the Main Campus. This project is for our final term at our 2nd Year - Second Semester.
-            </i></p>
+        <div id="aboutContainer">
+            <button class="aboutClose" onclick="toggleAbout()">❌</button>
+            <div class="aboutContent">
+                <p class="aboutText">Developer's Profile:</p>
+                <img src="assets/images/PJ.jpg" alt="" width="50" height="50" border="2" class="aboutImg">
+                <p class="aboutText">
+                    Name: Phel John Ganoran<br>
+                    Age: 21<br>
+                    Status: Single<br>
+                </p>
+                <p class="aboutText"><i>
+                    Developer Note:<br><br>
+                    I'm currently taking Bachelor of Science Information Technology at Romblon State University - College of Computing Multimedia Arts and Digital Innovation. Current Public Relations Officer of the Supreme Student Council in the Main Campus. This project is for our final term at our 2nd Year - Second Semester.
+                </i></p>
+            </div>
+            <div class="aboutContent">
+                <p class="aboutText">Developer's Profile:</p>
+                <img src="assets/images/Paul.jpg" alt="" width="50" height="50" border="2" class="aboutImg">
+                <p class="aboutText">
+                    Name: Paul Anthony G. Fontamillas<br>
+                    Age: 23<br>
+                    Status: Single<br>
+                </p>
+                <p class="aboutText"><i>
+                    Developer Note:<br><br>
+                    I am a Bachelor of Science in Information Technology student at Romblon State University - College of Computing, Multimedia Arts, and Digital Innovation. A chill and down-to-earth person, I prefer casual, natural conversations. I have a strong interest in algorithms, problem-solving, and web design. Living in Barangay Dapawan, I like to keep things straightforward and fun.
+                </i></p>
+            </div>
+            <div class="aboutContent">
+                <p class="aboutText">
+                    About this WebApp:<br><br>
+                    This calculator gives you multiple answers, it is your job to figure out which is the correct answer, giving you the correct answer later.<br><br>
+                    <i>Dev Note: Useless I know...</i><br><br>
+                    This calculator can also help to increase your mental math prowess. When you insert your own mathematical problem, it enables you to do it yourself. 
+                </p>
+            </div>
         </div>
-        <div class="aboutContent">
-            <p class="aboutText">Developer's Profile:</p>
-            <img src="assets/images/Paul.jpg" alt="" width="50" height="50" border="2" class="aboutImg">
-            <p class="aboutText">
-                Name: Paul Anthony G. Fontamillas<br>
-                Age: 23<br>
-                Status: Single<br>
-            </p>
-            <p class="aboutText"><i>
-                Developer Note:<br><br>
-                I am a Bachelor of Science in Information Technology student at Romblon State University - College of Computing, Multimedia Arts, and Digital Innovation. A chill and down-to-earth person, I prefer casual, natural conversations. I have a strong interest in algorithms, problem-solving, and web design. Living in Barangay Dapawan, I like to keep things straightforward and fun.
-            </i></p>
-        </div>
-        <div class="aboutContent">
-            <p class="aboutText">
-                About this WebApp:<br><br>
-                This calculator gives you multiple answers, it is your job to figure out which is the correct answer, giving you the correct answer later.<br><br>
-                <i>Dev Note: Useless I know...</i><br><br>
-                This calculator can also help to increase your mental math prowess. When you insert your own mathematical problem, it enables you to do it yourself. 
-            </p>
-        </div>
-
     </div>
-    <div id="application" class="app">
-        <img src="assets/images/logo.png" alt="logo" width="500" id="logo">
-        <table border="3" cellpadding="5" cellspacing="3" bgcolor="#b0b0b0" id="calculator">
-            <tr>
-                <td colspan="4">
-                    <div>
-                        <input type="text" readonly id="screen">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td align="center"><button id="calculator-button" onclick="insertInput('%');">%</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('^');">^</button></td>
-                <td align="center"><button id="calculator-button" onclick="clearInput();">C</button></td>
-                <td align="center"><button id="calculator-button" onclick="deleteInput();">❌</button></td>
-            </tr>
-            <tr>
-                <td align="center"><button id="calculator-button" onclick="insertInput('P');">( )</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('√');">√</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('M');">M</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('/');">/</button></td>
-            </tr>
-            <tr>
-                <td align="center"><button id="calculator-button" onclick="insertInput('7');">7</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('8');">8</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('9');">9</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('*');">*</button></td>
-            </tr>
-            <tr>
-                <td align="center"><button id="calculator-button" onclick="insertInput('4');">4</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('5');">5</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('6');">6</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('-');">-</button></td>
-            </tr>
-            <tr>
-                <td align="center"><button id="calculator-button" onclick="insertInput('1');">1</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('2');">2</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('3');">3</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('+');">+</button></td>
-            </tr>
-            <tr>
-                <td align="center"><button id="calculator-button" onclick="shift();">↑</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('0');">0</button></td>
-                <td align="center"><button id="calculator-button" onclick="insertInput('.');">.</button></td>
-                <td align="center"><button id="calculator-button" onclick="startGame();">=</button></td>
-            </tr>
-        </table>
-        <br>
-        <div id="timer-text">10.00s</div>
-        <div id="timer-container">
-            <div id="timer-bar"></div>
-        </div>
-        <div id="choices">
-            <table  border="0" align="center" cellpadding="5" cellspacing="3" id="calculator" width="100%">
-                <tr>
-                    <td align="center" width="50%"><button id="output-button1" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">A</button></td>
-                    <td align="center" width="50%"><button id="output-button2" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">B</button></td>
-                </tr>
-                <tr>
-                    <td align="center" width="50%"><button id="output-button3" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">C</button></td>
-                    <td align="center" width="50%"><button id="output-button4" class="buttonAnim out" width="50%" onclick="checkAns(); addScore(this);">D</button></td>
-                </tr>
-                <tr>
-                    <td align="center" colspan="2"><button id="reset-button" class="buttonAnim" onclick="toggleCalculator(); buttonDisappear();">Reset</button></td>
-                </tr>
-            </table>
+
+    <div class="loginContainer">
+        <div class="loginCard">
+            <div class="registerbox">
+                <center><h2>Sign Up</h2></center>
+                <input type="text" placeholder="Username" class="inputUser" required>
+                <input type="password" placeholder="Password" class="inputPassword" required>
+                <center><button onclick="register();">Register</button></center>
+                <center><a href="javascript:void(0)" onclick="flip(document.getElementsByClassName('loginContainer')[0]);">Go to Login</a></center>
+            </div>
+            
+            <div class="loginbox">
+                <center><h2>Login</h2></center>
+                <input type="text" placeholder="Username" class="inputUser">
+                <input type="password" placeholder="Password" class="inputPassword">
+                <center><button onclick="login();">Login</button></center>
+                <center><a href="javascript:void(0)" onclick="flip(document.getElementsByClassName('loginContainer')[0]);">Go to Register</a></center>
+            </div>
         </div>
     </div>
 </body>

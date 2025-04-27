@@ -14,6 +14,9 @@ let totalTime = 0;
 let isPaused = false;
 let timeout;
 
+//For User Login
+let users = JSON.parse(localStorage.getItem("calcuUsers"));
+let passwords = JSON.parse(localStorage.getItem("calcuPasswords"));
 //For Input and Calculation
 function insertInput(value) {
     playbeep();
@@ -304,4 +307,59 @@ function playding() {
 function playwomp() {
     const audio = new Audio('assets/audios/wrong.mp3');
     audio.play();
+}
+
+//Register Login 
+
+
+function register() {
+    let userVal = document.getElementsByClassName("inputUser")[0].value;
+    let passVal = document.getElementsByClassName("inputPassword")[0].value;
+    userVal.trimStart;
+    passVal.trimStart;
+    if (userVal === "" || passVal === "" || passVal.length <= 7) {
+        alert("Please Input a Valid Username");
+        return;
+    } else if (checkUsers(userVal)) {
+        alert("Username already exists. Go to Login.");
+        document.getElementsByClassName("inputUser")[0].value = "";
+        document.getElementsByClassName("inputPassword")[0].value = "";
+        return;
+    }
+
+    localStorage.setItem(userVal, passVal);
+    document.getElementsByClassName("inputUser")[0].value = "";
+    document.getElementsByClassName("inputPassword")[0].value = "";
+    alert('User succesfully registered, please login.')
+    flip(document.getElementsByClassName('loginContainer')[0]);
+}
+
+function login() {
+    let userVal = document.getElementsByClassName("inputUser")[1].value;
+    let passVal = document.getElementsByClassName("inputPassword")[1].value;
+    userVal.trimStart;
+    passVal.trimStart;
+    
+    if (!checkUsers(userVal)) {
+        alert("Username not found. Please Register");
+        return;
+    } else if (userVal === "" || passVal === "" || passVal.length <= 7) {
+        alert("Please Input a Valid Username or Password");
+        return;
+    } else if (passVal === localStorage.getItem(userVal)) {
+        document.getElementsByClassName("inputUser")[1].value = "";
+        document.getElementsByClassName("inputPassword")[1].value = "";
+        window.open('calculater.html','_self');
+    } else {
+        alert("Incorrect user name or password. Please try again");
+        return;
+    }
+}
+
+function checkUsers(user) {
+    let isFound = false;
+    for (let i = 0; i < Object.keys(localStorage).length; i++) {
+        isFound = user === Object.keys(localStorage)[i];
+    }
+    return isFound; 
 }
